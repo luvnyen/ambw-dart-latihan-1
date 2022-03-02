@@ -22,7 +22,6 @@ void drawPattern(int n) {
       }
       print("");
     }
-
     int n_next = (n / 2 + 1).floor() + 1;
     for (var i = (n / 2).floor(); i >= 1; i--) {
       if (i != (n / 2 + 1).floor()) {
@@ -47,11 +46,34 @@ void drawPattern(int n) {
       }
       n_next++;
     }
+  } else {
+    int left_side = 1;
+    int right_side = n;
+    for (var i = 1; i <= n; i++) {
+      for (var j = 1; j <= n - i + 1; j++) {
+        stdout.write(left_side++);
+        if (left_side > n) {
+          left_side = 1;
+        }
+      }
+      for (var j = 1; j <= i * 2 - 2; j++) {
+        stdout.write(" ");
+      }
+      for (var j = n - i + 1; j >= 1; j--) {
+        stdout.write(right_side--);
+        if (right_side < 1) {
+          right_side = n;
+        }
+      }
+      if (i != n) {
+        print("");
+      }
+    }
   }
 }
 
 void main(List<String> arguments) {
-  stdout.write("N: ");
-  String? n_first = stdin.readLineSync();
-  drawPattern(int.parse(n_first!));
+  stdout.write("Input N: ");
+  String? n = stdin.readLineSync();
+  drawPattern(int.parse(n!));
 }
