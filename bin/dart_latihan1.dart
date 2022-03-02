@@ -51,7 +51,12 @@ void drawPattern(int n) {
     int right_side = n;
     for (var i = 1; i <= n; i++) {
       for (var j = 1; j <= n - i + 1; j++) {
-        stdout.write(left_side++);
+        if (left_side % 9 == 0) {
+          stdout.write(9);
+          left_side++;
+        } else {
+          stdout.write(left_side++ % 9);
+        }
         if (left_side > n) {
           left_side = 1;
         }
@@ -60,7 +65,12 @@ void drawPattern(int n) {
         stdout.write(" ");
       }
       for (var j = n - i + 1; j >= 1; j--) {
-        stdout.write(right_side--);
+        if (right_side % 9 == 0) {
+          stdout.write(9);
+          right_side--;
+        } else {
+          stdout.write(right_side-- % 9);
+        }
         if (right_side < 1) {
           right_side = n;
         }
